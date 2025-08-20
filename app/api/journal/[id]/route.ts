@@ -3,7 +3,7 @@ import { connectToDatabase } from '@/lib/services/mongodb';
 import { ObjectId } from 'mongodb';
 
 export async function DELETE(
-  request: NextRequest,
+  _request: unknown,
   context: { params: { id: string } }
 ) {
   try {
