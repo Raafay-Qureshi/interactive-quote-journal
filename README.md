@@ -4,9 +4,7 @@ A modern, full-stack web application for discovering, saving, and visualizing th
 
 ---
 
-### ✨ [View Live Demo](https://your-deployment-link-here.com) ✨
-
-*(Link to be updated after deployment)*
+### ✨ [View Live Demo]([(https://interactive-quote-journal.vercel.app/)]) ✨
 
 ---
 
