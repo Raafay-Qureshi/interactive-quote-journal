@@ -1,0 +1,486 @@
+@import "tailwindcss";
+
+/* Zen Garden Design System - Calming, Minimalist Aesthetic */
+:root {
+  /* Light theme - Zen Garden palette */
+  --zen-background: #fefefe;
+  --zen-surface: #ffffff;
+  --zen-surface-elevated: #f8f9fa;
+  --zen-primary: #2d3748;
+  --zen-secondary: #4a5568;
+  --zen-muted: #718096;
+  --zen-accent: #4299e1;
+  --zen-accent-hover: #3182ce;
+  --zen-success: #38a169;
+  --zen-warning: #d69e2e;
+  --zen-error: #e53e3e;
+  --zen-border: #e2e8f0;
+  --zen-shadow: rgba(0, 0, 0, 0.04);
+  --zen-shadow-lg: rgba(0, 0, 0, 0.08);
+  
+  /* Typography scale */
+  --zen-text-xs: 0.75rem;
+  --zen-text-sm: 0.875rem;
+  --zen-text-base: 1rem;
+  --zen-text-lg: 1.125rem;
+  --zen-text-xl: 1.25rem;
+  --zen-text-2xl: 1.5rem;
+  --zen-text-3xl: 1.875rem;
+  --zen-text-4xl: 2.25rem;
+  
+  /* Spacing scale */
+  --zen-space-1: 0.25rem;
+  --zen-space-2: 0.5rem;
+  --zen-space-3: 0.75rem;
+  --zen-space-4: 1rem;
+  --zen-space-6: 1.5rem;
+  --zen-space-8: 2rem;
+  --zen-space-12: 3rem;
+  --zen-space-16: 4rem;
+  
+  /* Border radius */
+  --zen-radius-sm: 0.375rem;
+  --zen-radius: 0.5rem;
+  --zen-radius-lg: 0.75rem;
+  --zen-radius-xl: 1rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Dark theme - Zen Garden palette */
+    --zen-background: #0f1419;
+    --zen-surface: #1a202c;
+    --zen-surface-elevated: #2d3748;
+    --zen-primary: #f7fafc;
+    --zen-secondary: #e2e8f0;
+    --zen-muted: #a0aec0;
+    --zen-accent: #63b3ed;
+    --zen-accent-hover: #4299e1;
+    --zen-success: #68d391;
+    --zen-warning: #f6e05e;
+    --zen-error: #fc8181;
+    --zen-border: #2d3748;
+    --zen-shadow: rgba(0, 0, 0, 0.2);
+    --zen-shadow-lg: rgba(0, 0, 0, 0.3);
+  }
+}
+
+@theme inline {
+  --color-zen-background: var(--zen-background);
+  --color-zen-surface: var(--zen-surface);
+  --color-zen-surface-elevated: var(--zen-surface-elevated);
+  --color-zen-primary: var(--zen-primary);
+  --color-zen-secondary: var(--zen-secondary);
+  --color-zen-muted: var(--zen-muted);
+  --color-zen-accent: var(--zen-accent);
+  --color-zen-accent-hover: var(--zen-accent-hover);
+  --color-zen-success: var(--zen-success);
+  --color-zen-warning: var(--zen-warning);
+  --color-zen-error: var(--zen-error);
+  --color-zen-border: var(--zen-border);
+  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+/* Base styles with Zen Garden aesthetic */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--zen-background);
+  color: var(--zen-primary);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Focus styles for accessibility */
+*:focus {
+  outline: 2px solid var(--zen-accent);
+  outline-offset: 2px;
+}
+
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--zen-accent);
+  outline-offset: 2px;
+}
+
+/* Smooth transitions for interactive elements */
+button, a, input, textarea, select {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--zen-surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--zen-muted);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--zen-secondary);
+}
+
+/* Zen Garden animation keyframes */
+@keyframes zen-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes zen-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes zen-shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+/* Utility classes for Zen Garden design */
+.zen-fade-in {
+  animation: zen-fade-in 0.6s ease-out;
+}
+
+.zen-pulse {
+  animation: zen-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.zen-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--zen-surface) 0%,
+    var(--zen-surface-elevated) 50%,
+    var(--zen-surface) 100%
+  );
+  background-size: 200px 100%;
+  animation: zen-shimmer 1.5s ease-in-out infinite;
+}
+
+/* Mood-based Theme System */
+/* Smooth transitions for theme changes */
+:root {
+  transition:
+    --zen-primary 0.6s ease-in-out,
+    --zen-secondary 0.6s ease-in-out,
+    --zen-accent 0.6s ease-in-out,
+    --zen-background 0.6s ease-in-out,
+    --zen-surface 0.6s ease-in-out,
+    --zen-muted 0.6s ease-in-out;
+}
+
+/* Inspirational Theme - Blue tones for motivation and clarity */
+.theme-inspirational {
+  --zen-primary: #1e3a8a;
+  --zen-secondary: #3730a3;
+  --zen-accent: #2563eb;
+  --zen-accent-hover: #1d4ed8;
+  --zen-background: #eff6ff;
+  --zen-surface: #ffffff;
+  --zen-surface-elevated: #f0f9ff;
+  --zen-muted: #64748b;
+  --zen-border: #bfdbfe;
+  --zen-shadow: rgba(37, 99, 235, 0.08);
+  --zen-shadow-lg: rgba(37, 99, 235, 0.12);
+}
+
+/* Motivational Theme - Orange/red tones for energy and action */
+.theme-motivational {
+  --zen-primary: #9a3412;
+  --zen-secondary: #c2410c;
+  --zen-accent: #ea580c;
+  --zen-accent-hover: #dc2626;
+  --zen-background: #fff7ed;
+  --zen-surface: #ffffff;
+  --zen-surface-elevated: #fef3c7;
+  --zen-muted: #78716c;
+  --zen-border: #fed7aa;
+  --zen-shadow: rgba(234, 88, 12, 0.08);
+  --zen-shadow-lg: rgba(234, 88, 12, 0.12);
+}
+
+/* Reflective Theme - Purple tones for contemplation and depth */
+.theme-reflective {
+  --zen-primary: #581c87;
+  --zen-secondary: #7c3aed;
+  --zen-accent: #8b5cf6;
+  --zen-accent-hover: #7c3aed;
+  --zen-background: #faf5ff;
+  --zen-surface: #ffffff;
+  --zen-surface-elevated: #f3e8ff;
+  --zen-muted: #6b7280;
+  --zen-border: #d8b4fe;
+  --zen-shadow: rgba(139, 92, 246, 0.08);
+  --zen-shadow-lg: rgba(139, 92, 246, 0.12);
+}
+
+/* Philosophical Theme - Deep teal for wisdom and understanding */
+.theme-philosophical {
+  --zen-primary: #134e4a;
+  --zen-secondary: #0f766e;
+  --zen-accent: #14b8a6;
+  --zen-accent-hover: #0d9488;
+  --zen-background: #f0fdfa;
+  --zen-surface: #ffffff;
+  --zen-surface-elevated: #ccfbf1;
+  --zen-muted: #64748b;
+  --zen-border: #99f6e4;
+  --zen-shadow: rgba(20, 184, 166, 0.08);
+  --zen-shadow-lg: rgba(20, 184, 166, 0.12);
+}
+
+/* Humorous Theme - Yellow/green tones for joy and lightness */
+.theme-humorous {
+  --zen-primary: #365314;
+  --zen-secondary: #4d7c0f;
+  --zen-accent: #65a30d;
+  --zen-accent-hover: #84cc16;
+  --zen-background: #f7fee7;
+  --zen-surface: #ffffff;
+  --zen-surface-elevated: #ecfccb;
+  --zen-muted: #71717a;
+  --zen-border: #bef264;
+  --zen-shadow: rgba(101, 163, 13, 0.08);
+  --zen-shadow-lg: rgba(101, 163, 13, 0.12);
+}
+
+/* Melancholic Theme - Muted grays and blues for introspection */
+.theme-melancholic {
+  --zen-primary: #374151;
+  --zen-secondary: #4b5563;
+  --zen-accent: #6b7280;
+  --zen-accent-hover: #9ca3af;
+  --zen-background: #f9fafb;
+  --zen-surface: #ffffff;
+  --zen-surface-elevated: #f3f4f6;
+  --zen-muted: #9ca3af;
+  --zen-border: #d1d5db;
+  --zen-shadow: rgba(107, 114, 128, 0.08);
+  --zen-shadow-lg: rgba(107, 114, 128, 0.12);
+}
+
+/* Optimistic Theme - Bright cyan for hope and positivity */
+.theme-optimistic {
+  --zen-primary: #155e75;
+  --zen-secondary: #0891b2;
+  --zen-accent: #06b6d4;
+  --zen-accent-hover: #0891b2;
+  --zen-background: #ecfeff;
+  --zen-surface: #ffffff;
+  --zen-surface-elevated: #cffafe;
+  --zen-muted: #64748b;
+  --zen-border: #67e8f9;
+  --zen-shadow: rgba(6, 182, 212, 0.08);
+  --zen-shadow-lg: rgba(6, 182, 212, 0.12);
+}
+
+/* Contemplative Theme - Soft indigo for peaceful reflection */
+.theme-contemplative {
+  --zen-primary: #3730a3;
+  --zen-secondary: #4338ca;
+  --zen-accent: #6366f1;
+  --zen-accent-hover: #4f46e5;
+  --zen-background: #f0f9ff;
+  --zen-surface: #ffffff;
+  --zen-surface-elevated: #e0e7ff;
+  --zen-muted: #64748b;
+  --zen-border: #c7d2fe;
+  --zen-shadow: rgba(99, 102, 241, 0.08);
+  --zen-shadow-lg: rgba(99, 102, 241, 0.12);
+}
+
+/* Wise Theme - Rich brown tones for knowledge and experience */
+.theme-wise {
+  --zen-primary: #78350f;
+  --zen-secondary: #92400e;
+  --zen-accent: #d97706;
+  --zen-accent-hover: #b45309;
+  --zen-background: #fffbeb;
+  --zen-surface: #ffffff;
+  --zen-surface-elevated: #fef3c7;
+  --zen-muted: #78716c;
+  --zen-border: #fde68a;
+  --zen-shadow: rgba(217, 119, 6, 0.08);
+  --zen-shadow-lg: rgba(217, 119, 6, 0.12);
+}
+
+/* Uplifting Theme - Pink tones for encouragement and warmth */
+.theme-uplifting {
+  --zen-primary: #be185d;
+  --zen-secondary: #db2777;
+  --zen-accent: #ec4899;
+  --zen-accent-hover: #db2777;
+  --zen-background: #fdf2f8;
+  --zen-surface: #ffffff;
+  --zen-surface-elevated: #fce7f3;
+  --zen-muted: #6b7280;
+  --zen-border: #f9a8d4;
+  --zen-shadow: rgba(236, 72, 153, 0.08);
+  --zen-shadow-lg: rgba(236, 72, 153, 0.12);
+}
+
+/* Dark mode overrides for mood themes */
+@media (prefers-color-scheme: dark) {
+  .theme-inspirational {
+    --zen-primary: #dbeafe;
+    --zen-secondary: #bfdbfe;
+    --zen-accent: #60a5fa;
+    --zen-accent-hover: #3b82f6;
+    --zen-background: #0f172a;
+    --zen-surface: #1e293b;
+    --zen-surface-elevated: #334155;
+    --zen-border: #1e40af;
+  }
+
+  .theme-motivational {
+    --zen-primary: #fed7aa;
+    --zen-secondary: #fdba74;
+    --zen-accent: #fb923c;
+    --zen-accent-hover: #f97316;
+    --zen-background: #0c0a09;
+    --zen-surface: #1c1917;
+    --zen-surface-elevated: #292524;
+    --zen-border: #c2410c;
+  }
+
+  .theme-reflective {
+    --zen-primary: #e9d5ff;
+    --zen-secondary: #d8b4fe;
+    --zen-accent: #c084fc;
+    --zen-accent-hover: #a855f7;
+    --zen-background: #0c0a09;
+    --zen-surface: #1c1917;
+    --zen-surface-elevated: #292524;
+    --zen-border: #7c3aed;
+  }
+
+  .theme-philosophical {
+    --zen-primary: #99f6e4;
+    --zen-secondary: #5eead4;
+    --zen-accent: #2dd4bf;
+    --zen-accent-hover: #14b8a6;
+    --zen-background: #042f2e;
+    --zen-surface: #134e4a;
+    --zen-surface-elevated: #0f766e;
+    --zen-border: #0d9488;
+  }
+
+  .theme-humorous {
+    --zen-primary: #d9f99d;
+    --zen-secondary: #bef264;
+    --zen-accent: #a3e635;
+    --zen-accent-hover: #84cc16;
+    --zen-background: #0a0a0a;
+    --zen-surface: #1a1a1a;
+    --zen-surface-elevated: #262626;
+    --zen-border: #4d7c0f;
+  }
+
+  .theme-melancholic {
+    --zen-primary: #d1d5db;
+    --zen-secondary: #9ca3af;
+    --zen-accent: #6b7280;
+    --zen-accent-hover: #4b5563;
+    --zen-background: #0f0f0f;
+    --zen-surface: #1f1f1f;
+    --zen-surface-elevated: #2f2f2f;
+    --zen-border: #374151;
+  }
+
+  .theme-optimistic {
+    --zen-primary: #a5f3fc;
+    --zen-secondary: #67e8f9;
+    --zen-accent: #22d3ee;
+    --zen-accent-hover: #06b6d4;
+    --zen-background: #083344;
+    --zen-surface: #155e75;
+    --zen-surface-elevated: #0891b2;
+    --zen-border: #0e7490;
+  }
+
+  .theme-contemplative {
+    --zen-primary: #c7d2fe;
+    --zen-secondary: #a5b4fc;
+    --zen-accent: #818cf8;
+    --zen-accent-hover: #6366f1;
+    --zen-background: #1e1b4b;
+    --zen-surface: #312e81;
+    --zen-surface-elevated: #3730a3;
+    --zen-border: #4338ca;
+  }
+
+  .theme-wise {
+    --zen-primary: #fde68a;
+    --zen-secondary: #fcd34d;
+    --zen-accent: #f59e0b;
+    --zen-accent-hover: #d97706;
+    --zen-background: #0c0a09;
+    --zen-surface: #1c1917;
+    --zen-surface-elevated: #292524;
+    --zen-border: #92400e;
+  }
+
+  .theme-uplifting {
+    --zen-primary: #f9a8d4;
+    --zen-secondary: #f472b6;
+    --zen-accent: #ec4899;
+    --zen-accent-hover: #db2777;
+    --zen-background: #0f0a0a;
+    --zen-surface: #1f1a1a;
+    --zen-surface-elevated: #2f2a2a;
+    --zen-border: #be185d;
+  }
+}
+
+/* Theme transition animations */
+.theme-transition {
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Mood indicator animation */
+@keyframes mood-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+.mood-indicator {
+  animation: mood-pulse 2s ease-in-out infinite;
+}
