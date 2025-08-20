@@ -32,9 +32,6 @@ This application is architected as a professional, full-stack system:
 *   **Database:** MongoDB
 *   **Styling:** Tailwind CSS
 *   **AI Integration:** AI model accessed via a secure API
-*   **Testing:**
-    *   **Unit/Integration:** Jest & React Testing Library
-    *   **End-to-End:** Playwright
 *   **Deployment:** Vercel
 
 ## Getting Started
