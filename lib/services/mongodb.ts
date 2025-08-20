@@ -3,10 +3,8 @@ import { MongoClient, Db } from 'mongodb';
 const uri = process.env.MONGODB_URI;
 const dbName = process.env.MONGODB_DB;
 
-let cached: {
-  client: MongoClient;
-  db: Db;
-} | null = null;
+let cachedClient: MongoClient;
+let cachedDb: Db;
 
 if (!uri) {
   throw new Error(
@@ -21,8 +19,8 @@ if (!dbName) {
 }
 
 export async function connectToDatabase() {
-  if (cached) {
-    return cached;
+  if (cachedClient && cachedDb) {
+    return { client: cachedClient, db: cachedDb };
   }
 
   const client = new MongoClient(uri!);
@@ -31,10 +29,8 @@ export async function connectToDatabase() {
 
   const db = client.db(dbName);
 
-  cached = {
-    client,
-    db,
-  };
+  cachedClient = client;
+  cachedDb = db;
 
-  return cached;
+  return { client, db };
 }
