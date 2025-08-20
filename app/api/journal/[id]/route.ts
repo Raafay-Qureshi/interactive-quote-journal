@@ -28,10 +28,13 @@ export async function DELETE(
       { message: 'Entry deleted successfully' },
       { status: 200 }
     );
-  } catch (error) {
+  } catch (error: any) {
     console.error('Failed to delete journal entry:', error);
+    const errorMessage = error.message?.includes('environment variable')
+      ? 'Database connection not configured. Please set up MongoDB environment variables in Vercel.'
+      : 'Failed to delete journal entry';
     return NextResponse.json(
-      { error: 'Failed to delete journal entry' },
+      { error: errorMessage, details: error.message },
       { status: 500 }
     );
   }

@@ -11,10 +11,13 @@ export async function GET() {
       .sort({ savedAt: -1 })
       .toArray();
     return NextResponse.json(journal, { status: 200 });
-  } catch (error) {
+  } catch (error: any) {
     console.error('Failed to fetch journal entries:', error);
+    const errorMessage = error.message?.includes('environment variable')
+      ? 'Database connection not configured. Please set up MongoDB environment variables in Vercel.'
+      : 'Failed to fetch journal entries';
     return NextResponse.json(
-      { error: 'Failed to fetch journal entries' },
+      { error: errorMessage, details: error.message },
       { status: 500 }
     );
   }
@@ -34,10 +37,13 @@ export async function POST(request: Request) {
       { message: 'Entry saved', insertedId: result.insertedId },
       { status: 201 }
     );
-  } catch (error) {
+  } catch (error: any) {
     console.error('Failed to save journal entry:', error);
+    const errorMessage = error.message?.includes('environment variable')
+      ? 'Database connection not configured. Please set up MongoDB environment variables in Vercel.'
+      : 'Failed to save journal entry';
     return NextResponse.json(
-      { error: 'Failed to save journal entry' },
+      { error: errorMessage, details: error.message },
       { status: 500 }
     );
   }

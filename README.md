@@ -55,17 +55,4 @@ npm install
 npm run dev
 ```
 
-The application will be available at `http://localhost:3000`. The necessary environment variables are included in the project for demonstration purposes.
-
-## Testing
-
-This project includes a comprehensive testing suite to ensure quality and reliability.
-
-*   **To run all unit and integration tests:**
-    ```bash
-    npm test
-    ```
-*   **To run end-to-end tests with Playwright:**
-    ```bash
-    # This will run the full user journey in a headless browser.
-    npm run test:e2e
+The application will be available at `http://localhost:3000`.
