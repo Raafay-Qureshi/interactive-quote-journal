@@ -3,11 +3,11 @@ import { connectToDatabase } from '@/lib/services/mongodb';
 import { ObjectId } from 'mongodb';
 
 export async function DELETE(
-  _request: unknown,
-  context: { params: { id: string } }
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const { id } = context.params;
+    const { id } = await params;
     if (!ObjectId.isValid(id)) {
       return NextResponse.json({ error: 'Invalid ID format' }, { status: 400 });
     }
